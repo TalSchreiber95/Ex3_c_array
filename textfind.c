@@ -5,31 +5,37 @@ int arr[SIZE];
 int similar (char *s, char *t, int n){
     if (!strcmp(s, t) && n == 0){ //if s.equals(t) && n > 0 then should return false
         return 1;
-    }else if(!strcmp(s, t)){ //if s.equals(t) and n==0 return true
-        return 1;
-    }else if(strlen(t) > strlen(s)){
+    }else if(n < (strlen(t)+strlen(s))/2){ 
+        //Let integers n, k, t. n < k, n < t. 2n < k + t
+        //if n sustains n < (k+t)/2
+        //then it is not possible ommiting n letters from s to get to t.
         return 0;
     }
-
 
     int i,j,index;
     int count = n;
     j = 0;
+
+    // t = a   c    | n = 2
+    //     |\ \ -->  
+    // s = a b c d
     for(i = 0; i < strlen(t); i++){
-        if(s[j] == t[i]){
+        if(t[i] == s[j]){
             j++;
         }else{
-            while (s[j] != t[i] && j < 100){
+            while (t[i] != s[j]){
                 count--;
                 j++;
             }
-            if(i == strlen(t)-1){
+            if(i == strlen(t)-1){ 
+                //If reached the end of string break and calculate result.
                 break;
             } 
-            i--;
+            i--; //Decrease i to
         }
         index = i;
     }
+    //RETHINK THIS WHOLE SECTION OF IF'S
     if(index == strlen(t)-1 && count == abs(strlen(t) - strlen(s))){
         return 1;
     }else if(count == 0 && index == strlen(t)-1){
@@ -89,41 +95,44 @@ int getWord(char w[]){
     char c;
     k = i = 0;
 
-    while (k < WORD ){
-        scanf("%c" , &c);
+    while (k < WORD){
+        // scanf("%c" , &c); //This method waits for input from user.
+        c = getchar();
+
         if(c == '\n' || c == ' ' || c == '\t'){
             break;
         }
         else {
             w[i++] = c;   
         }
-        k++; 
-        while (getchar() != '\n');
+        k++;
     }
-    w[i] = '\n';
-    printf("%s", w);
+    w[i] = '\0'; // <==> '' (empty char)
+    // printf("%s", w);
     return i;
 }
 int Substring(char * str1, char * str2){
-    if (!strcmp(str1, str2)){
+    if (!strcmp(str1, str2)){ //if str1.compareTo(str2) == 0 <==> str1 == str2
         return 1;
     }
 
-    int sizeStr1 = strlen(str1);
-    int sizeStr2 = strlen(str2);
-    //printf("sizeStr1 = %d , sizeStr2 = %d\n", sizeStr1,sizeStr2);
-    int i,j,size;
-    size = sizeStr2;
-    for(i = 0; i < sizeStr1; i++){
-        for(j = 0; j < sizeStr2; j++){
-            //printf("str1[%d] = %c, str2[%d] = %c, size = %d\n",i,str1[i],j,str2[j],size);
+    int len1 = strlen(str1);
+    int len2 = strlen(str2);
+
+    int i,j
+    ,size; 
+
+    size = len2;
+    for(i = 0; i < len1; i++){
+        for(j = 0; j < len2; j++){
             if(str1[i] == str2[j]){
                 size--;
                 i++;
             }else{
-                size = sizeStr2;
+                size = len2;
             }
-            if(size == 0){
+            if(size == 0){ //if size == 0 --> all chars of 
+                           //  str2 are located continuesly in str1
                 return 1;
             }            
         }
