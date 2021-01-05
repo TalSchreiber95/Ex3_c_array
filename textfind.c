@@ -39,9 +39,9 @@ int similar (char *s, char *t, int n){
     }
 }
 void printArr(const int arr[],int size){
-    int j;
-    for(j = 0 ; j < size ; j++){
-        printf("var[%d] = %d\n",j,arr[j]);
+    int i;
+    for(i = 0 ; i < size ; i++){
+        printf("var[%d] = %d\n",i,arr[i]);
     }
     printf("\n\n");
 }
@@ -69,24 +69,19 @@ void readFromFile(){
     fclose(file);
 }
 int getLine(char s[]){
-    int i,k;
-    char c;
-    k = i = 0;
+    int i = 0;
+    char c = ' ';
 
-    while (k < LINE ){
-        scanf("%c" , &c);
-        if(c == '\n' || c == '\0'){
+    while(1){
+
+        c = getchar();
+        if(c == '\n' || c == EOF) {
             break;
         }
-        if(c != '\n' && c != '\0'){
-            s[i++] = c;
-        }
-        k++; 
-        while (getchar() != '\n');
+        s[i++] = c;
     }
-
     s[i] = '\n';
-    printf("%s", s);
+    printf("getLine received: %s\n", s);
     return i;
 }
 int getWord(char w[]){
@@ -99,7 +94,7 @@ int getWord(char w[]){
         if(c == '\n' || c == ' ' || c == '\t'){
             break;
         }
-        if(c != '\t' && c != '\n' && c != ' '){
+        else {
             w[i++] = c;   
         }
         k++; 
@@ -109,7 +104,7 @@ int getWord(char w[]){
     printf("%s", w);
     return i;
 }
-int Substring( char * str1, char * str2){
+int Substring(char * str1, char * str2){
     if (!strcmp(str1, str2)){
         return 1;
     }
