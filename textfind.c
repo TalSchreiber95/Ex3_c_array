@@ -153,7 +153,6 @@ void print_similar_words(char * str){
     while (size > 0 || size != EOF) {
 
         size = getWord(word);
-        printf("trying %s...\n",word);
         if (similar(word, str, 1))
         {
             printf("%s\n", word);
