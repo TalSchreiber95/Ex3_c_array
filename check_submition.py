@@ -17,6 +17,7 @@ def pars_input():
             continue
         if re.search(r'.+', line):
             commit = line
+            print(commit)
             continue
     return git_rep , ids , commit
 
@@ -56,7 +57,7 @@ def main():
         if proc.returncode != 0:
            raise Exception("checkout failed p.returncode= " + str(proc.returncode))
     except Exception as inst:
-        print("can't cherckout your commit.")
+        print("can't checkout your commit.")
         print(inst)
         exit(1)
 

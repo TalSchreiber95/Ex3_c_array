@@ -1,5 +1,4 @@
 #include "isort.h"
-#include <stdio.h>
 
 void shift_element(int* arr, int i) {
     int temp1 = *(arr);

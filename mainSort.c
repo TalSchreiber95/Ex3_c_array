@@ -1,9 +1,8 @@
-#include <stdio.h>
 #include "isort.h"
 /*
     Main of isort.c
 */
-#define Len 50 //size of arr scan
+
 void printArr(int arr[],int len){ // print the array as requested
     int i;
     for(i = 0 ; i < len-1 ;i++){
@@ -19,11 +18,11 @@ int main(){
         scanf("%d",&charScan);
         *(arr+i) = charScan;
     }
-    printf("Arr before calling insertion sort: \n \n");  
+    // printf("Arr before calling insertion sort: \n \n");  
     int len=sizeof(arr)/sizeof(int);
-    printArr(arr,len);
+    // printArr(arr,len);
     insertion_sort(arr,len);
-    printf("\n Arr after calling insertion sort:\n\n");
+    printf("Arr after calling insertion sort:\n");
     printArr(arr,len);
     return 0;
 }
