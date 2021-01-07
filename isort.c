@@ -15,12 +15,11 @@ void insertion_sort(int* arr , int len) {
         int countDown = i;
         while (countDown > 0 && currentNumber < *(arr + countDown - 1)) {
             count++;
-            countDown = countDown - 1;
+            countDown--;
         }
         if (count > 0) {
             shift_element((arr+i - count), count);
             *(arr+i - count) = currentNumber;
         }
-
     }
 }
